@@ -1,95 +1,100 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0b0d12">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Aestro Plan">
-  <link rel="apple-touch-icon" href="icons/icon-180.png">
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
-  <title>Aestro Plan</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0c10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Aestro Plan">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icons/icon-180.png">
+<link rel="stylesheet" href="./style.css">
+<title>Aestro Plan</title>
 </head>
 <body>
-  <main class="app-shell">
-    <header class="topbar">
-      <div>
-        <div class="eyebrow">ZSMEiE · 1P</div>
-        <h1>Aestro Plan</h1>
-        <div id="dateLine" class="subtle"></div>
-      </div>
-      <button id="settingsBtn" class="icon-btn" aria-label="Ustawienia">⚙️</button>
-    </header>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">A</div><div><b>Aestro Plan</b><span>Twój szkolny plan</span></div></div>
+    <button id="settingsBtnTop" class="icon-btn" aria-label="Ustawienia">⚙</button>
+  </header>
 
-    <section id="hero" class="hero-card">
-      <div class="hero-top">
-        <span id="statePill" class="pill">Ładowanie</span>
-        <span id="clock" class="clock">--:--</span>
+  <main>
+    <section id="page-today" class="page active">
+      <div class="page-head"><div><span class="eyebrow">DZISIAJ</span><h1 id="todayTitle">—</h1><p id="todaySubtitle">—</p></div><div class="live-clock" id="clock">—</div></div>
+      <div class="hero">
+        <div class="hero-top"><span id="stateChip" class="state-chip">—</span><span class="source-mini">1P</span></div>
+        <h2 id="heroTitle">—</h2><p id="heroMeta">—</p>
+        <div class="hero-timer" id="heroTimer">—</div><div class="hero-caption" id="heroCaption">—</div>
+        <div class="progress"><div id="heroProgress"></div></div>
       </div>
-      <div id="currentTitle" class="hero-title">Sprawdzam plan…</div>
-      <div id="currentMeta" class="hero-meta"></div>
-      <div class="hero-progress"><div id="progressBar" class="hero-progress-fill"></div></div>
-      <div class="hero-bottom">
-        <strong id="timeText">--</strong>
-        <span id="timeCaption"> </span>
+      <div class="stats-row">
+        <button class="stat-card" id="nextCard"><span class="stat-label">NASTĘPNA</span><strong id="nextTitle">—</strong><small id="nextMeta">—</small><em id="nextDay">—</em></button>
+        <div class="stat-card"><span class="stat-label">PRZERWA</span><div class="number-line"><strong id="breakNumber">—</strong><small id="breakUnit"></small></div><small id="breakMeta">—</small></div>
       </div>
+      <div class="section-head"><div><span class="eyebrow">DZISIEJSZY PLAN</span><h3>Oś czasu</h3></div><span class="pill" id="lessonCount">—</span></div>
+      <div id="todayList" class="timeline"></div>
+      <div class="quick-grid">
+        <button id="quickAddTask" class="quick-card"><span>＋</span><div><b>Dodaj zadanie</b><small>Szybko zapisz pracę domową</small></div></button>
+        <button id="quickNoteBtn" class="quick-card"><span>📝</span><div><b>Notatka do lekcji</b><small id="currentNotePreview">—</small></div></button>
+      </div>
+      <div class="footer-source"><span>Plan obowiązuje od <b id="sourceDate">14.09.2026</b></span><button id="openPlanSource">Otwórz plan szkoły ↗</button></div>
     </section>
 
-    <section class="grid-two">
-      <div class="mini-card">
-        <div class="card-label">NASTĘPNA</div>
-        <div id="nextTitle" class="mini-title">—</div>
-        <div id="nextMeta" class="mini-meta"></div>
+    <section id="page-plan" class="page">
+      <div class="page-head"><div><span class="eyebrow">PLAN</span><h1>Tydzień</h1><p id="planSubtitle">—</p></div></div>
+      <div class="day-tabs">
+        <button class="day-tab" data-day="1">Pn</button><button class="day-tab" data-day="2">Wt</button><button class="day-tab" data-day="3">Śr</button><button class="day-tab" data-day="4">Cz</button><button class="day-tab" data-day="5">Pt</button>
       </div>
-      <div class="mini-card">
-        <div class="card-label">PRZERWA</div>
-        <div id="breakText" class="mini-title">—</div>
-        <div id="breakMeta" class="mini-meta"></div>
-      </div>
+      <div id="planGrid" class="plan-grid"></div>
     </section>
 
-    <section class="section-head">
-      <div>
-        <div class="eyebrow">DZISIAJ</div>
-        <h2>Plan lekcji</h2>
-      </div>
-      <button id="sourceBtn" class="text-btn">Źródło ↗</button>
+    <section id="page-tasks" class="page">
+      <div class="page-head"><div><span class="eyebrow">ORGANIZER</span><h1>Zadania</h1><p id="taskStats">—</p></div><button id="addTaskBtn" class="primary-btn">＋ Dodaj</button></div>
+      <div class="tip-card"><span>💡</span><div><b>Zapisuj zadania od razu po lekcji.</b><p>Przypisuj przedmiot i termin, a lista sama ustawi je w kolejności.</p></div></div>
+      <div id="tasksList" class="task-list"></div>
     </section>
 
-    <section id="scheduleList" class="schedule-list"></section>
+    <section id="page-notes" class="page">
+      <div class="page-head"><div><span class="eyebrow">SZYBKIE NOTATKI</span><h1>Notatki</h1><p>Jedna notatka na przedmiot.</p></div></div>
+      <div class="notes-toolbar"><select id="noteSubject"></select><button id="useCurrentSubject" class="secondary-btn">Użyj teraz</button></div>
+      <textarea id="noteEditor" class="note-editor" placeholder="Wpisz temat, rzeczy do zapamiętania, pytania…"></textarea>
+      <div class="note-actions"><span id="noteSaved"></span><button id="saveNote" class="primary-btn">Zapisz notatkę</button></div>
+    </section>
 
-    <div id="toast" class="toast" role="status"></div>
+    <section id="page-settings" class="page">
+      <div class="page-head"><div><span class="eyebrow">APLIKACJA</span><h1>Ustawienia</h1><p>Dopasuj Aestro Plan do siebie.</p></div></div>
+      <div class="settings-group"><div class="settings-title">Twój plan</div>
+        <label class="setting-row"><span><b>Moja grupa</b><small>Przy podziale lekcji pokazuj wybraną grupę.</small></span><select id="groupSelect"><option value="1">Grupa 1</option><option value="2">Grupa 2</option></select></label>
+        <label class="setting-row"><span><b>Pokazuj nauczyciela</b><small>Dodaje nauczyciela do informacji przy lekcji.</small></span><input id="showTeacher" type="checkbox"></label>
+        <label class="setting-row"><span><b>Pokazuj salę</b><small>Dodaje numer/symbol sali.</small></span><input id="showRoom" type="checkbox"></label>
+        <label class="setting-row"><span><b>Pokazuj obie grupy</b><small>Przy podziale pokaż G1 i G2.</small></span><input id="showBothGroups" type="checkbox"></label>
+      </div>
+      <div class="settings-group"><div class="settings-title">Powiadomienia</div>
+        <label class="setting-row"><span><b>5 min do końca</b><small>Alert w aplikacji; wibracja działa tam, gdzie wspiera ją urządzenie/przeglądarka.</small></span><input id="fiveMin" type="checkbox"></label>
+        <label class="setting-row"><span><b>Wibracja</b><small>Haptyczny sygnał przy alercie.</small></span><input id="haptics" type="checkbox"></label>
+        <button id="notifyBtn" class="wide-btn">Zezwól na powiadomienia systemowe</button>
+      </div>
+      <div class="settings-group"><div class="settings-title">Wygląd</div>
+        <label class="setting-row"><span><b>Ciemny motyw</b><small>Włącz lub wyłącz ciemny interfejs.</small></span><input id="darkMode" type="checkbox"></label>
+      </div>
+      <div class="settings-group"><div class="settings-title">Informacje</div><div class="info-row"><span>Klasa</span><b>1P</b></div><div class="info-row"><span>Plan od</span><b>14.09.2026</b></div><div class="info-row"><span>Źródło</span><button id="openPlanSource" class="text-btn">ZSMEiE →</button></div></div>
+    </section>
   </main>
 
-  <div id="settingsModal" class="modal hidden">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
-      <div class="sheet-handle"></div>
-      <div class="sheet-head"><h2 id="settingsTitle">Ustawienia</h2><button id="closeSettings" class="icon-btn">✕</button></div>
-      <div class="settings-group">
-        <label class="setting-row">
-          <span><strong>Moja grupa</strong><small>Wybierz swoją grupę przy podziale klasy.</small></span>
-          <select id="groupSelect"><option value="1">Grupa 1</option><option value="2">Grupa 2</option></select>
-        </label>
-      </div>
-      <div class="settings-group">
-        <div class="settings-title">Widok</div>
-        <label class="setting-row"><span><strong>Pokazuj nauczyciela</strong></span><input id="showTeacher" type="checkbox"></label>
-        <label class="setting-row"><span><strong>Pokazuj salę</strong></span><input id="showRoom" type="checkbox"></label>
-        <label class="setting-row"><span><strong>Pokazuj obie grupy</strong><small>Przy lekcjach podzielonych pokaż grupę 1 i 2.</small></span><input id="showBothGroups" type="checkbox"></label>
-        <label class="setting-row"><span><strong>Tryb ciemny</strong></span><input id="darkMode" type="checkbox"></label>
-      </div>
-      <div class="settings-group">
-        <div class="settings-title">Przypomnienie 5 min przed końcem</div>
-        <label class="setting-row"><span><strong>Włącz przypomnienie</strong><small>W wersji PWA alert działa, gdy strona/aplikacja jest aktywna. iOS nie daje zwykłej stronie dostępu do lokalnej wibracji jak natywna aplikacja.</small></span><input id="fiveMin" type="checkbox"></label>
-        <button id="notifyBtn" class="primary-btn">Włącz powiadomienia systemowe</button>
-      </div>
-      <div class="settings-footer">Plan: 1P · źródło: zsmeie.torun.pl/plan/#1P</div>
-    </section>
-  </div>
+  <nav class="bottom-nav">
+    <button class="tab-btn active" data-tab="today"><span>◉</span><small>Dzisiaj</small></button>
+    <button class="tab-btn" data-tab="plan"><span>▦</span><small>Plan</small></button>
+    <button class="tab-btn" data-tab="tasks"><span>✓</span><small>Zadania</small></button>
+    <button class="tab-btn" data-tab="notes"><span>✎</span><small>Notatki</small></button>
+    <button class="tab-btn" data-tab="settings"><span>⚙</span><small>Ustawienia</small></button>
+  </nav>
+</div>
 
-  <script src="app.js"></script>
+<div id="toast" class="toast"></div>
+<div id="taskModal" class="modal hidden"><div class="modal-card"><div class="modal-head"><h2>Nowe zadanie</h2><button id="closeTask" class="icon-btn">×</button></div><input id="taskText" class="text-input" placeholder="Np. Matematyka — zad. 3–6"><input id="taskSubject" class="text-input" placeholder="Przedmiot (opcjonalnie)"><input id="taskDue" class="text-input" type="date"><div class="modal-actions"><button id="cancelTask" class="secondary-btn">Anuluj</button><button id="saveTask" class="primary-btn">Dodaj</button></div></div></div>
+<div id="lessonDetailModal" class="modal hidden"><div class="modal-card"><div class="modal-head"><div><h2 id="lessonDetailTitle">Lekcja</h2><p id="lessonDetailMeta">—</p></div><button id="closeLessonDetail" class="icon-btn">×</button></div><textarea id="lessonNote" class="note-editor mini" placeholder="Notatka do tej lekcji…"></textarea><div class="modal-actions"><button id="cancelLessonNote" class="secondary-btn">Anuluj</button><button id="saveLessonNote" class="primary-btn">Zapisz</button></div></div></div>
+<script>document.getElementById('sourceDate').textContent='14.09.2026';</script>
+<script src="./app.js"></script>
 </body>
 </html>

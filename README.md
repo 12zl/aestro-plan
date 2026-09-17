@@ -1,17 +1,20 @@
-# Aestro Plan — PWA dla ZSMEiE 1P
+# Aestro Plan 0.2
 
-Wersja bez Maca: działa na Windowsie i można ją dodać do ekranu głównego iPhone'a przez Safari.
+PWA dla klasy 1P ZSMEiE.
 
-## Szybka instalacja
-1. Umieść cały folder na hostingu z HTTPS (np. GitHub Pages).
-2. Otwórz link na iPhonie w Safari.
-3. Safari → Udostępnij → **Dodaj do ekranu początkowego**.
-4. Uruchamiaj ikonę „Aestro Plan” jak zwykłą apkę.
+## Zawiera
+- aktualną lekcję, przerwę i następną lekcję
+- licznik sekund do końca lekcji / przerwy
+- poprawny plan 1P wg widoku szkoły, obowiązujący od 14.09.2026
+- wybór grupy 1/2
+- prezentację obu grup przy podziale
+- plan tygodniowy
+- zadania domowe zapisane lokalnie
+- notatki per przedmiot
+- ustawienia wyglądu, nauczyciela, sali, grup, alertu 5 min i haptyki
+- tryb offline po pierwszym załadowaniu
 
-## Ważne o wibracji
-Safari/iOS nie udostępnia zwykłej stronie internetowej takiego samego lokalnego API wibracji i powiadomień jak natywna aplikacja. Dlatego wersja PWA pokazuje alert 5 min przed końcem, gdy aplikacja jest aktywna; systemowe powiadomienia webowe wymagają dodatkowej obsługi hostingu/push i nie dają natywnego harmonogramowania lokalnych alarmów.
+## Aktualizacja na GitHub Pages
+Podmień w repozytorium stare pliki `index.html`, `app.js`, `style.css`, `manifest.json`, `sw.js` i folder `icons`. Po odświeżeniu Safari może potrzebować chwili na pobranie nowej wersji; w razie czego zamknij PWA i otwórz ją ponownie.
 
-## Plan
-Klasa: 1P
-Data planu: 27.04.2026
-Źródło: https://zsmeie.torun.pl/plan/#1P
+Źródło planu: https://zsmeie.torun.pl/plan/#1P
