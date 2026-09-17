@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Aestro Plan">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>Aestro Plan</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">ZSMEiE · 1P</div>
+        <h1>Aestro Plan</h1>
+        <div id="dateLine" class="subtle"></div>
+      </div>
+      <button id="settingsBtn" class="icon-btn" aria-label="Ustawienia">⚙️</button>
+    </header>
+
+    <section id="hero" class="hero-card">
+      <div class="hero-top">
+        <span id="statePill" class="pill">Ładowanie</span>
+        <span id="clock" class="clock">--:--</span>
+      </div>
+      <div id="currentTitle" class="hero-title">Sprawdzam plan…</div>
+      <div id="currentMeta" class="hero-meta"></div>
+      <div class="hero-progress"><div id="progressBar" class="hero-progress-fill"></div></div>
+      <div class="hero-bottom">
+        <strong id="timeText">--</strong>
+        <span id="timeCaption"> </span>
+      </div>
+    </section>
+
+    <section class="grid-two">
+      <div class="mini-card">
+        <div class="card-label">NASTĘPNA</div>
+        <div id="nextTitle" class="mini-title">—</div>
+        <div id="nextMeta" class="mini-meta"></div>
+      </div>
+      <div class="mini-card">
+        <div class="card-label">PRZERWA</div>
+        <div id="breakText" class="mini-title">—</div>
+        <div id="breakMeta" class="mini-meta"></div>
+      </div>
+    </section>
+
+    <section class="section-head">
+      <div>
+        <div class="eyebrow">DZISIAJ</div>
+        <h2>Plan lekcji</h2>
+      </div>
+      <button id="sourceBtn" class="text-btn">Źródło ↗</button>
+    </section>
+
+    <section id="scheduleList" class="schedule-list"></section>
+
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+
+  <div id="settingsModal" class="modal hidden">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="sheet-handle"></div>
+      <div class="sheet-head"><h2 id="settingsTitle">Ustawienia</h2><button id="closeSettings" class="icon-btn">✕</button></div>
+      <div class="settings-group">
+        <label class="setting-row">
+          <span><strong>Moja grupa</strong><small>Wybierz swoją grupę przy podziale klasy.</small></span>
+          <select id="groupSelect"><option value="1">Grupa 1</option><option value="2">Grupa 2</option></select>
+        </label>
+      </div>
+      <div class="settings-group">
+        <div class="settings-title">Widok</div>
+        <label class="setting-row"><span><strong>Pokazuj nauczyciela</strong></span><input id="showTeacher" type="checkbox"></label>
+        <label class="setting-row"><span><strong>Pokazuj salę</strong></span><input id="showRoom" type="checkbox"></label>
+        <label class="setting-row"><span><strong>Pokazuj obie grupy</strong><small>Przy lekcjach podzielonych pokaż grupę 1 i 2.</small></span><input id="showBothGroups" type="checkbox"></label>
+        <label class="setting-row"><span><strong>Tryb ciemny</strong></span><input id="darkMode" type="checkbox"></label>
+      </div>
+      <div class="settings-group">
+        <div class="settings-title">Przypomnienie 5 min przed końcem</div>
+        <label class="setting-row"><span><strong>Włącz przypomnienie</strong><small>W wersji PWA alert działa, gdy strona/aplikacja jest aktywna. iOS nie daje zwykłej stronie dostępu do lokalnej wibracji jak natywna aplikacja.</small></span><input id="fiveMin" type="checkbox"></label>
+        <button id="notifyBtn" class="primary-btn">Włącz powiadomienia systemowe</button>
+      </div>
+      <div class="settings-footer">Plan: 1P · źródło: zsmeie.torun.pl/plan/#1P</div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
